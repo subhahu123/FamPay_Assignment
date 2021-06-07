@@ -1,8 +1,11 @@
-var apiRouter = express()
+var express = require('express')
+var apiRouter = express() ;
 
 
 apiRouter.get('/search', function (req, res) {
-  res.send('Search Youtube Videos') ;
+	const queryParams = req.query ;
+	console.log(queryParams) ;
+  	res.send('Search Youtube Videos') ;
 })
 
 
