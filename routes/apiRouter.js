@@ -9,4 +9,11 @@ apiRouter.get('/search', function (req, res) {
 })
 
 
+apiRouter.get('/videos', function (req, res) {
+	const queryParams = req.query ;
+	console.log(queryParams) ;
+  	res.send('Youtube Videos List') ;
+})
+
+
 module.exports = apiRouter ;

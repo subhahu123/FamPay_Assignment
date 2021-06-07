@@ -2,7 +2,10 @@
 	"name": "default",
 	"port": 3000,
 	"api": {
-		"videos": "https://www.googleapis.com/youtube/v3/videos",
+		"videos": "https://www.googleapis.com/youtube/v3/search",
 		"search": ""
-	}
+	},
+	"apiKeys": [
+		"AIzaSyB1Hllc8MibMk-AduGc7DB1yCkfWbuIycg"
+	]
 }
