@@ -1,5 +1,7 @@
 var express = require('express')
 var apiRouter = express() ;
+const dao = require('../services/dao') ;
+
 
 
 apiRouter.get('/search', function (req, res) {
@@ -9,10 +11,11 @@ apiRouter.get('/search', function (req, res) {
 })
 
 
-apiRouter.get('/videos', function (req, res) {
+apiRouter.get('/videos', async function (req, res) {
 	const queryParams = req.query ;
 	console.log(queryParams) ;
-  	res.send('Youtube Videos List') ;
+	const data = await dao.getAllVideos(queryParams.offset, queryParams.limit) ;
+  	res.json(data) ;
 })
 
 

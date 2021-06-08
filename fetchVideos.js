@@ -8,8 +8,6 @@ const saveVideoDetails = async (video) => {
 	// const {} = video ;
 	await dao.saveVideo(video.id.videoId, video.snippet.title, video.snippet.description, video.snippet.publishedAt) ;
 	// console.log(dao.saveVideo('1234', 'test1', 'a fampay assignment', 'today')) ;
-	await dao.getVideos() ;
-
 }
 
 const getParamsString = (params) => {
@@ -40,6 +38,6 @@ const fetchVideos = async (query) => {
 	}
 }
 
-fetchVideos("tanmay bhatt") ;
+// fetchVideos("tanmay bhatt") ;
 
 module.exports = fetchVideos ;

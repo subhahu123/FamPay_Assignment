@@ -36,17 +36,16 @@ const saveVideo = async (videoId, title, description, publishedAt) => {
 	}
 }
 
-const getVideos = async () => {
+const getAllVideos = async (offset, limit) => {
 	console.log("Searching videos in  database") ;
 
 	try {
 		return await new Promise((resolve, reject) => {
-    		db.run('SELECT title FROM videos', [], (err, row) => {
+    		db.all('SELECT * FROM videos ORDER BY publishedAt DESC LIMIT ? OFFSET ?', [limit, offset], (err, rows) => {
         		if (err)
             		reject(err)
-
-            	console.log(row);
-        		resolve(row)
+            	// console.log(rows);
+        		resolve(rows)
     		})
 		})
 	} catch (err) {
@@ -54,9 +53,30 @@ const getVideos = async () => {
 	}
 }
 
+const getVideos = async (query) => {
+	console.log("Searching videos in  database") ;
+
+	try {
+		return await new Promise((resolve, reject) => {
+    		db.all('SELECT * FROM videos WHERE title=? or description=?', [query, query], (err, rows) => {
+        		if (err)
+            		reject(err)
+
+            	// console.log(rows);
+        		resolve(rows)
+    		})
+		})
+	} catch (err) {
+		console.log(err) ;
+	}
+}
+
+// getVideos().then(data => console.log(data)) ;
+
 module.exports = {
 	saveVideo: saveVideo,
-	getVideos: getVideos
+	getVideos: getVideos,
+	getAllVideos: getAllVideos
 }
 
 
