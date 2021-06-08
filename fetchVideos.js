@@ -1,9 +1,15 @@
 const axios = require('axios') ;
 const config = require('config') ;
+const dao = require('./services/dao') ;
 
 
-const saveVideoDetails = (video) => {
+const saveVideoDetails = async (video) => {
 	console.log(video) ;
+	// const {} = video ;
+	await dao.saveVideo('1234', 'test1', 'a fampay assignment', 'today') ;
+	// console.log(dao.saveVideo('1234', 'test1', 'a fampay assignment', 'today')) ;
+	await dao.getVideos() ;
+
 }
 
 const getParamsString = (params) => {
@@ -30,7 +36,7 @@ const fetchVideos = async (query) => {
 	// console.log(getVideos.data) ;
 	for(var i = 0 ; i < getVideos.data.items.length ; i++) {
 		const video = getVideos.data.items[i] ;
-		saveVideoDetails(video) ;
+		await saveVideoDetails(video) ;
 	}
 }
 
