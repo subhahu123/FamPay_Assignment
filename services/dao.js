@@ -14,7 +14,7 @@ let db = new sqlite3.Database('./db/sample.db', (err) => {
 //   console.log('Close the database connection.');
 // });
 
-db.run('CREATE TABLE IF NOT EXISTS videos(videoId text, title text, description text, publishedAt text)') ;
+db.run('CREATE TABLE IF NOT EXISTS videos(videoId text, title text, description text, publishedAt DATETIME, created_at DATETIME DEFAULT CURRENT_TIMESTAMP)') ;
   // db.run('CREATE TABLE langs(name text)');
 
 
