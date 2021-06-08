@@ -5,8 +5,9 @@ const dao = require('./services/dao') ;
 
 const saveVideoDetails = async (video) => {
 	console.log(video) ;
+	console.log(video.snippet) ;
 	// const {} = video ;
-	await dao.saveVideo(video.id.videoId, video.snippet.title, video.snippet.description, video.snippet.publishedAt) ;
+	await dao.saveVideo(video.id.videoId, video.snippet.title, video.snippet.description, video.snippet.thumbnails.default.url, video.snippet.publishedAt) ;
 	// console.log(dao.saveVideo('1234', 'test1', 'a fampay assignment', 'today')) ;
 }
 
@@ -38,6 +39,6 @@ const fetchVideos = async (query) => {
 	}
 }
 
-// fetchVideos("tanmay bhatt") ;
+// fetchVideos("code") ;
 
 module.exports = fetchVideos ;

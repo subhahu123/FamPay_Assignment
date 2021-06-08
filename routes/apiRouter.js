@@ -4,10 +4,11 @@ const dao = require('../services/dao') ;
 
 
 
-apiRouter.get('/search', function (req, res) {
+apiRouter.get('/search', async function (req, res) {
 	const queryParams = req.query ;
 	console.log(queryParams) ;
-  	res.send('Search Youtube Videos') ;
+	const data = await dao.searchVideos(queryParams.query) ;
+  	res.json(data) ;
 })
 
 

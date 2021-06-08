@@ -1,6 +1,6 @@
 const sqlite3 = require('sqlite3').verbose();
 
-let db = new sqlite3.Database('./db/sample.db', (err) => {
+let db = new sqlite3.Database('./db/videos.db', (err) => {
   if (err) {
     return console.error(err.message);
   }
@@ -14,16 +14,16 @@ let db = new sqlite3.Database('./db/sample.db', (err) => {
 //   console.log('Close the database connection.');
 // });
 
-db.run('CREATE TABLE IF NOT EXISTS videos(videoId text, title text, description text, publishedAt DATETIME, created_at DATETIME DEFAULT CURRENT_TIMESTAMP)') ;
+db.run('CREATE TABLE IF NOT EXISTS videos(videoId text, title text, description text, thumbnailUrl text, publishedAt DATETIME, created_at DATETIME DEFAULT CURRENT_TIMESTAMP)') ;
   // db.run('CREATE TABLE langs(name text)');
 
 
-const saveVideo = async (videoId, title, description, publishedAt) => {
+const saveVideo = async (videoId, title, description, thumbnailUrl, publishedAt) => {
 	console.log("inserting / putting videos in  database") ;
 
 	try {
 		return await new Promise((resolve, reject) => {
-    		db.run('INSERT INTO videos(videoId, title, description, publishedAt) VALUES(?,?,?,?)', [videoId, title, description, publishedAt], function(err) {
+    		db.run('INSERT INTO videos(videoId, title, description, thumbnailUrl, publishedAt) VALUES(?,?,?,?,?)', [videoId, title, description, thumbnailUrl, publishedAt], function(err) {
         		if (err)
             		reject(err)
 
@@ -36,7 +36,7 @@ const saveVideo = async (videoId, title, description, publishedAt) => {
 	}
 }
 
-const getAllVideos = async (offset, limit) => {
+const getAllVideos = async (offset=0, limit=10) => {
 	console.log("Searching videos in  database") ;
 
 	try {
@@ -53,7 +53,7 @@ const getAllVideos = async (offset, limit) => {
 	}
 }
 
-const getVideos = async (query) => {
+const searchVideos = async (query) => {
 	console.log("Searching videos in  database") ;
 
 	try {
@@ -75,7 +75,7 @@ const getVideos = async (query) => {
 
 module.exports = {
 	saveVideo: saveVideo,
-	getVideos: getVideos,
+	searchVideos: searchVideos,
 	getAllVideos: getAllVideos
 }
 
