@@ -14,7 +14,7 @@ app.use(function (req, res, next) {
 
 var apiRouter = require('./routes/apiRouter.js') ;
 
-// setInterval(fetchVideos, 10*1000); 
+setInterval(fetchVideos, 10*1000); 
 // then call every 10 seconds
 
 app.use('/api', apiRouter) ;

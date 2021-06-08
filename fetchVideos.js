@@ -20,7 +20,7 @@ const getParamsString = (params) => {
 	return paramsString ;
 }
 
-const fetchVideos = async (query) => {
+const fetchVideos = async (query="code") => {
 	params = {
 		"part": "snippet",
 		"q": query
